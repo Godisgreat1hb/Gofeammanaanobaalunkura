@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gofe Guenut Evangelical Church | ጐፌ ገነት ወንጌላዊ ቤተክርስትያን</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0A192F',
+                            800: '#112240',
+                            700: '#1d3557',
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#E6C657',
+                            dark: '#AA8C2C'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Nyala', 'Ethiopic', 'sans-serif'],
+                        amharic: ['Nyala', 'Ethiopian Unicode', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Nyala support -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .eth-font { font-family: 'Nyala', 'Inter', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.75)), url('https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=1600&auto=format&fit=crop') no-repeat center center/cover;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A192F; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-gold selection:text-navy-900">
+
+    <!-- Top Utility & Language Bar -->
+    <header class="bg-navy-900 text-white border-b border-gold/20 text-sm sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center text-gold"><i class="fas fa-church mr-2"></i> <span class="font-bold text-xs tracking-wider uppercase">GGEC</span></span>
+                <span class="hidden md:inline text-gray-300 text-xs">| Sidama, Ethiopia</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-1 bg-navy-800 p-1 rounded border border-gold/30">
+                    <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2 py-0.5 text-xs rounded font-medium transition bg-gold text-navy-900">English</button>
+                    <button onclick="setLanguage('am')" id="lang-btn-am" class="px-2 py-0.5 text-xs rounded font-medium transition text-gray-300 hover:text-white">አማርኛ</button>
+                    <button onclick="setLanguage('sid')" id="lang-btn-sid" class="px-2 py-0.5 text-xs rounded font-medium transition text-gray-300 hover:text-white" title="Sidaamu Afoo (Verified)">Sidaamu Afoo</button>
+                </div>
+                <!-- Admin Portal Login Trigger -->
+                <button onclick="openAdminModal()" class="text-xs bg-gold hover:bg-gold-light text-navy-900 font-semibold px-3 py-1.5 rounded shadow transition flex items-center">
+                    <i class="fas fa-lock mr-1.5"></i> <span data-i18n="admin_portal">Admin Portal</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="bg-navy-900/95 backdrop-blur-md sticky top-12 z-40 border-b border-gold/20 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Church Name -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 rounded-full bg-gold flex items-center justify-center text-navy-900 font-bold text-xl shadow-lg border-2 border-white/20">
+                        <i class="fas fa-cross"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-base sm:text-lg text-white group-hover:text-gold transition leading-tight">Gofe Guenut Evangelical Church</h1>
+                        <p class="text-xs text-gold/90 eth-font">ጐፌ ገነት ወንጌላዊ ቤተክርስትያን</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#home" class="hover:text-gold transition" data-i18n="nav_home">Home</a>
+                    <a href="#about" class="hover:text-gold transition" data-i18n="nav_about">About Us</a>
+                    <a href="#leadership" class="hover:text-gold transition" data-i18n="nav_leadership">Leadership</a>
+                    <a href="#ministries" class="hover:text-gold transition" data-i18n="nav_ministries">Ministries</a>
+                    <a href="#services" class="hover:text-gold transition" data-i18n="nav_services">Services</a>
+                    <a href="#events" class="hover:text-gold transition" data-i18n="nav_events">Events</a>
+                    <a href="#gallery" class="hover:text-gold transition" data-i18n="nav_gallery">Gallery</a>
+                    <a href="#contact" class="hover:text-gold transition" data-i18n="nav_contact">Contact</a>
+                </div>
+
+                <!-- Action CTA -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <button onclick="openRegisterModal()" class="bg-gold hover:bg-gold-light text-navy-900 font-bold px-4 py-2.5 rounded-lg shadow-lg text-sm transition transform hover:-translate-y-0.5 flex items-center">
+                        <i class="fas fa-user-plus mr-2"></i> <span data-i18n="btn_register">Register Membership</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-white hover:text-gold p-2 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-800 border-b border-gold/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_home">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_about">About Us</a>
+            <a href="#leadership" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_leadership">Leadership</a>
+            <a href="#ministries" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_ministries">Ministries</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_services">Services</a>
+            <a href="#events" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_events">Events</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_gallery">Gallery</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 border-b border-white/10 hover:text-gold" data-i18n="nav_contact">Contact</a>
+            <button onclick="toggleMobileMenu(); openRegisterModal();" class="w-full mt-2 bg-gold text-navy-900 font-bold py-2.5 rounded-lg text-center">
+                <i class="fas fa-user-plus mr-2"></i> <span data-i18n="btn_register">Register Membership</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative hero-bg text-white min-h-[85vh] flex items-center justify-center text-center px-4 py-20">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="inline-flex items-center space-x-2 bg-gold/20 border border-gold/40 text-gold px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase">
+                <i class="fas fa-star text-xs"></i> <span data-i18n="hero_badge">Welcome to Gofe Guenut Evangelical Church</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                Gofe Guenut Evangelical Church
+            </h1>
+            <p class="text-xl sm:text-2xl font-medium text-gold eth-font">
+                ጐፌ ገነት ወንጌላዊ ቤተክርስትያን
+            </p>
+            <p class="text-lg sm:text-xl text-gray-200 italic max-w-2xl mx-auto font-light" data-i18n="hero_tagline">
+                "Growing in Faith, United in Christ, Serving with Love."
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <button onclick="openRegisterModal()" class="w-full sm:w-auto bg-gold hover:bg-gold-light text-navy-900 font-bold px-8 py-3.5 rounded-xl shadow-xl transition transform hover:-translate-y-1 flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-2"></i> <span data-i18n="btn_join">Join Our Church</span>
+                </button>
+                <a href="#about" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-3.5 rounded-xl backdrop-blur-sm transition flex items-center justify-center">
+                    <span data-i18n="btn_explore">Explore Our Church</span> <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WELCOME & QUICK INFO STATS -->
+    <section class="bg-navy-800 text-white py-12 border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="bg-navy-900/60 p-6 rounded-2xl border border-gold/20 shadow-lg">
+                <div class="text-gold text-3xl mb-3"><i class="fas fa-book-bible"></i></div>
+                <h3 class="text-lg font-bold mb-2" data-i18n="stat_word_title">Biblical Teaching</h3>
+                <p class="text-sm text-gray-300" data-i18n="stat_word_desc">Rooted firmly in the infallible Word of God, preaching Christ and Him crucified.</p>
+            </div>
+            <div class="bg-navy-900/60 p-6 rounded-2xl border border-gold/20 shadow-lg">
+                <div class="text-gold text-3xl mb-3"><span class="eth-font">✝</span><i class="fas fa-hands-praying ml-1"></i></div>
+                <h3 class="text-lg font-bold mb-2" data-i18n="stat_fellowship_title">Vibrant Fellowship</h3>
+                <p class="text-sm text-gray-300" data-i18n="stat_fellowship_desc">United in the Holy Spirit, caring for one another in genuine Christian love.</p>
+            </div>
+            <div class="bg-navy-900/60 p-6 rounded-2xl border border-gold/20 shadow-lg">
+                <div class="text-gold text-3xl mb-3"><i class="fas fa-globe-africa"></i></div>
+                <h3 class="text-lg font-bold mb-2" data-i18n="stat_community_title">Community Impact</h3>
+                <p class="text-sm text-gray-300" data-i18n="stat_community_desc">Reaching Sidama and beyond with the transforming gospel of Jesus Christ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT OUR CHURCH -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mb-4" data-i18n="about_heading">About Our Church</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg" data-i18n="about_subtitle">Discover our history, divine calling, core beliefs, and values as a family of believers in Sidama, Ethiopia.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900" data-i18n="history_title">Our History</h3>
+                    <p class="text-gray-700 leading-relaxed" data-i18n="history_desc">
+                        Gofe Guenut Evangelical Church (ጐፌ ገነት ወንጌላዊ ቤተክርስትያን) was established with a powerful vision to proclaim the gospel of Jesus Christ, nurture believers in sound biblical doctrine, and serve the local community with boundless love and compassion. Over the years, the Lord has sustained us through prayer, faithful stewardship, and steady spiritual growth.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="bg-navy-50 p-4 rounded-xl border border-navy-100">
+                            <h4 class="font-bold text-navy-900 mb-1" data-i18n="vision_label">Our Vision</h4>
+                            <p class="text-xs text-gray-600" data-i18n="vision_text">To see transformed lives honoring God and impacting generations.</p>
+                        </div>
+                        <div class="bg-navy-50 p-4 rounded-xl border border-navy-100">
+                            <h4 class="font-bold text-navy-900 mb-1" data-i18n="mission_label">Our Mission</h4>
+                            <p class="text-xs text-gray-600" data-i18n="mission_text">Making disciples through worship, fellowship, discipleship, and service.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1544427920-c49ccfb85579?q=80&w=1000&auto=format&fit=crop" alt="Church Gathering" class="rounded-2xl shadow-2xl border-4 border-gold/30 w-full object-h-[400px]">
+                    <div class="absolute -bottom-6 -left-6 bg-navy-900 text-white p-6 rounded-2xl shadow-xl border border-gold/40 hidden sm:block">
+                        <p class="text-gold font-bold text-lg">Sidama, Ethiopia</p>
+                        <p class="text-xs text-gray-300">Shining the light of Christ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beliefs & Values Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-gold transition shadow-sm">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-bible"></i></div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3" data-i18n="beliefs_title">Our Beliefs</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="beliefs_desc">We believe in the Holy Trinity, the divine inspiration of the Holy Scriptures, salvation by grace through faith in Jesus Christ alone, and the blessed hope of His return.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-gold transition shadow-sm">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-heart"></i></div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3" data-i18n="values_title">Core Values</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="values_desc">Biblical Truth, Genuine Love, Prayerful Dependence, Servant Leadership, Integrity, and Active Community Engagement.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-gold transition shadow-sm">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4 font-bold"><i class="fas fa-hands-helping"></i></div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3" data-i18n="purpose_title">Spiritual Purpose</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="purpose_desc">To glorify God by equipping believers for ministry, edifying the body of Christ, and evangelizing our local community and nations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHURCH LEADERSHIP -->
+    <section id="leadership" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mb-4" data-i18n="leadership_heading">Church Leadership</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg" data-i18n="leadership_subtitle">Meet our dedicated pastors, elders, and ministry leaders serving with godly devotion.</p>
+            </div>
+
+            <div id="leadership-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Rendered dynamically or via static markup -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-xl transition group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Senior Pastor" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-900 p-4">
+                            <span class="text-gold text-xs font-bold uppercase tracking-wider" data-i18n="role_senior_pastor">Senior Pastor</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-navy-900 mb-1">Pastor Tesfaye Bekele</h3>
+                        <p class="text-gray-600 text-sm mb-4">Leading the congregation in spiritual growth, vision casting, and pastoral care.</p>
+                        <div class="flex items-center space-x-3 text-gold">
+                            <i class="fas fa-envelope"></i> <span class="text-xs text-gray-500">tesfaye.b@gofeguenutchurch.org</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-xl transition group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop" alt="Assistant Pastor" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-900 p-4">
+                            <span class="text-gold text-xs font-bold uppercase tracking-wider" data-i18n="role_assoc_pastor">Assistant Pastor</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-navy-900 mb-1">Pastor Alemayehu Desta</h3>
+                        <p class="text-gray-600 text-sm mb-4">Overseeing discipleship programs, prayer ministries, and community outreach.</p>
+                        <div class="flex items-center space-x-3 text-gold">
+                            <i class="fas fa-envelope"></i> <span class="text-xs text-gray-500">alemayehu.d@gofeguenutchurch.org</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-xl transition group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop" alt="Church Elder" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy-900 p-4">
+                            <span class="text-gold text-xs font-bold uppercase tracking-wider" data-i18n="role_elder">Church Elder & Admin</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-navy-900 mb-1">Elder Yohannes Kassa</h3>
+                        <p class="text-gray-600 text-sm mb-4">Managing church administration, financial stewardship, and operations.</p>
+                        <div class="flex items-center space-x-3 text-gold">
+                            <i class="fas fa-envelope"></i> <span class="text-xs text-gray-500">yohannes.k@gofeguenutchurch.org</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHURCH MINISTRIES -->
+    <section id="ministries" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mb-4" data-i18n="ministries_heading">Church Ministries</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg" data-i18n="ministries_subtitle">Get involved in our active ministries designed to serve every age group and spiritual need.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-users"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_youth">Youth Ministry</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_youth_desc">Empowering the next generation to stand firm in faith and godly character.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-hands-holding-child"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_women">Women's Ministry</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_women_desc">Sisterhood fellowship, prayer support, and compassionate community service.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_men">Men's Ministry</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_men_desc">Building godly husbands, fathers, and leaders of integrity.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-child"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_children">Children's Ministry</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_children_desc">Nurturing little ones in Sunday school with biblical stories and songs.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-music"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_worship">Worship Ministry</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_worship_desc">Lifting high the name of Jesus through heartfelt choir and instrumental praise.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-pray"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_prayer">Prayer Ministry</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_prayer_desc">Interceding daily for the church, families, nation, and global missions.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-bullhorn"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_evangelism">Evangelism & Outreach</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_evangelism_desc">Sharing the gospel message and showing Christ's love in the community.</p>
+                </div>
+                <div class="bg-navy-50 p-6 rounded-2xl border border-navy-100 hover:border-gold transition">
+                    <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl mb-4"><i class="fas fa-book-open"></i></div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-i18n="min_bible">Bible Study</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="min_bible_desc">Deepening theological understanding and practical life application.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORSHIP SERVICES & PROGRAMS -->
+    <section id="services" class="py-20 bg-navy-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4" data-i18n="services_heading">Worship Services & Programs</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-300 text-lg" data-i18n="services_subtitle">Join us in fellowship and worship throughout the week.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-navy-800 p-6 rounded-2xl border border-gold/30">
+                    <div class="text-gold font-bold text-sm mb-2"><i class="fas fa-calendar-day mr-2"></i> Sunday</div>
+                    <h3 class="text-xl font-bold mb-1" data-i18n="srv_sunday">Sunday Worship Service</h3>
+                    <p class="text-gold text-xs font-semibold mb-3">09:00 AM - 12:00 PM</p>
+                    <p class="text-gray-300 text-xs leading-relaxed">Main worship celebration featuring congregational singing, choir praise, and biblical preaching.</p>
+                </div>
+                <div class="bg-navy-800 p-6 rounded-2xl border border-gold/30">
+                    <div class="text-gold font-bold text-sm mb-2"><i class="fas fa-calendar-day mr-2"></i> Wednesday</div>
+                    <h3 class="text-xl font-bold mb-1" data-i18n="srv_wednesday">Mid-Week Prayer Meeting</h3>
+                    <p class="text-gold text-xs font-semibold mb-3">05:30 PM - 07:00 PM</p>
+                    <p class="text-gray-300 text-xs leading-relaxed">Corporate intercession, spiritual encouragement, and sharing testimonies of God's grace.</p>
+                </div>
+                <div class="bg-navy-800 p-6 rounded-2xl border border-gold/30">
+                    <div class="text-gold font-bold text-sm mb-2"><i class="fas fa-calendar-day mr-2"></i> Friday</div>
+                    <h3 class="text-xl font-bold mb-1" data-i18n="srv_friday">Youth Fellowship Program</h3>
+                    <p class="text-gold text-xs font-semibold mb-3">04:30 PM - 06:30 PM</p>
+                    <p class="text-gray-300 text-xs leading-relaxed">Dynamic worship, biblical discussion groups, and youth mentorship activities.</p>
+                </div>
+                <div class="bg-navy-800 p-6 rounded-2xl border border-gold/30">
+                    <div class="text-gold font-bold text-sm mb-2"><i class="fas fa-calendar-day mr-2"></i> Saturday</div>
+                    <h3 class="text-xl font-bold mb-1" data-i18n="srv_saturday">Bible Study & Choir Practice</h3>
+                    <p class="text-gold text-xs font-semibold mb-3">03:00 PM - 05:30 PM</p>
+                    <p class="text-gray-300 text-xs leading-relaxed">In-depth scripture examination and worship choir rehearsals for Sunday service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS & ANNOUNCEMENTS -->
+    <section id="events" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mb-4" data-i18n="events_heading">Events & Announcements</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg" data-i18n="events_subtitle">Stay updated with upcoming church conferences, special programs, and announcements.</p>
+            </div>
+
+            <div id="public-events-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+                    <div class="bg-navy-900 text-gold p-4 text-center font-bold">
+                        <span class="text-xs uppercase tracking-wider block">Upcoming Conference</span>
+                        <span class="text-xl">Annual Revival Conference 2026</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center text-xs text-gray-500 space-x-4">
+                            <span><i class="fas fa-calendar text-gold mr-1"></i> Oct 15 - 18, 2026</span>
+                            <span><i class="fas fa-clock text-gold mr-1"></i> 03:00 PM Daily</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Three days of powerful spiritual awakening, guest speakers, special choir ministry, and miracles.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+                    <div class="bg-navy-900 text-gold p-4 text-center font-bold">
+                        <span class="text-xs uppercase tracking-wider block">Church Announcement</span>
+                        <span class="text-xl">New Membership Classes</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center text-xs text-gray-500 space-x-4">
+                            <span><i class="fas fa-calendar text-gold mr-1"></i> Every Sunday</span>
+                            <span><i class="fas fa-clock text-gold mr-1"></i> 01:30 PM</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Orientation classes for new believers and those wishing to formally join Gofe Guenut Evangelical Church.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+                    <div class="bg-navy-900 text-gold p-4 text-center font-bold">
+                        <span class="text-xs uppercase tracking-wider block">Community Outreach</span>
+                        <span class="text-xl">Sidama Charity & Support Program</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center text-xs text-gray-500 space-x-4">
+                            <span><i class="fas fa-calendar text-gold mr-1"></i> Nov 20, 2026</span>
+                            <span><i class="fas fa-clock text-gold mr-1"></i> 09:00 AM</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Reaching out to vulnerable families in our local district with food provisions and loving fellowship.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mb-4" data-i18n="gallery_heading">Photo Gallery</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg" data-i18n="gallery_subtitle">Glimpses of our worship services, youth gatherings, celebrations, and church life.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop" alt="Worship" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <span class="text-white font-semibold text-sm">Sunday Worship Celebration</span>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600&auto=format&fit=crop" alt="Youth" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <span class="text-white font-semibold text-sm">Youth Fellowship Gathering</span>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop" alt="Choir" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <span class="text-white font-semibold text-sm">Worship Choir Ministry</span>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600&auto=format&fit=crop" alt="Community" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <span class="text-white font-semibold text-sm">Community Outreach Program</span>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
+                    <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=600&auto=format&fit=crop" alt="Building" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <span class="text-white font-semibold text-sm">Church Sanctuary</span>
+                    </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Prayer" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <span class="text-white font-semibold text-sm">Prayer & Intercession Meeting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mb-4" data-i18n="contact_heading">Contact Us</h2>
+                <div class="w-24 h-1.5 bg-gold mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 text-lg" data-i18n="contact_subtitle">We would love to hear from you. Reach out for prayer requests, inquiries, or visit us.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-1" data-i18n="loc_title">Church Location</h3>
+                            <p class="text-gray-600 text-sm">Gofe Guenut, Sidama Region, Ethiopia</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl shrink-0"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-1" data-i18n="phone_title">Phone Number</h3>
+                            <p class="text-gray-600 text-sm">+251 46 211 0000 / +251 91 100 0000</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-navy-900 text-gold rounded-xl flex items-center justify-center text-xl shrink-0"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-1" data-i18n="email_title">Email Address</h3>
+                            <p class="text-gray-600 text-sm">info@gofeguenutchurch.org</p>
+                        </div>
+                    </div>
+                    <!-- Map Placeholder -->
+                    <div class="bg-navy-900 rounded-2xl overflow-hidden shadow-lg h-48 flex items-center justify-center text-center p-6 border border-gold/30">
+                        <div>
+                            <i class="fas fa-map text-gold text-3xl mb-2"></i>
+                            <p class="text-white font-semibold">Google Maps Location Placeholder</p>
+                            <p class="text-xs text-gray-400 mt-1">Sidama Region, Ethiopia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
+                    <h3 class="text-2xl font-bold text-navy-900 mb-6" data-i18n="form_title">Send Us a Message</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_name">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_email">Email Address</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_message">Message / Prayer Request</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gold"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-gold font-bold py-3.5 rounded-lg shadow-lg transition">
+                            <span data-i18n="btn_send">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-white border-t border-gold/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div>
+                <div class="flex items-center space-x-3 mb-3">
+                    <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-navy-900 font-bold text-lg">
+                        <i class="fas fa-cross"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">Gofe Guenut Evangelical Church</h4>
+                        <p class="text-xs text-gold eth-font">ጐፌ ገነት ወንጌላዊ ቤተክርስትያን</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-400" data-i18n="footer_tagline">Growing in Faith, United in Christ, Serving with Love.</p>
+            </div>
+            <div class="text-center text-xs text-gray-400">
+                <p>&copy; 2026 Gofe Guenut Evangelical Church. All rights reserved.</p>
+                <p class="mt-1">Sidama, Ethiopia</p>
+            </div>
+            <div class="flex justify-center md:justify-end space-x-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-navy-800 hover:bg-gold hover:text-navy-900 flex items-center justify-center transition text-gold border border-gold/30"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-navy-800 hover:bg-gold hover:text-navy-900 flex items-center justify-center transition text-gold border border-gold/30"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-navy-800 hover:bg-gold hover:text-navy-900 flex items-center justify-center transition text-gold border border-gold/30"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- PUBLIC MEMBERSHIP REGISTRATION MODAL -->
+    <!-- ========================================== -->
+    <div id="register-modal" class="fixed inset-0 z-50 bg-navy-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-gold/40 relative my-8">
+            <button onclick="closeRegisterModal()" class="absolute top-6 right-6 text-gray-400 hover:text-navy-900 text-xl"><i class="fas fa-times"></i></button>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-navy-900 text-gold rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-md">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-navy-900" data-i18n="reg_modal_title">Church Membership Registration</h3>
+                <p class="text-gray-600 text-sm mt-1" data-i18n="reg_modal_subtitle">Join Gofe Guenut Evangelical Church digital community.</p>
+            </div>
+
+            <form id="membership-form" onsubmit="handleMembershipSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_fullname">Full Name *</label>
+                        <input type="text" id="reg-name" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_gender">Gender</label>
+                        <select id="reg-gender" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_phone">Phone Number *</label>
+                        <input type="tel" id="reg-phone" required placeholder="+251..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_email_opt">Email Address</label>
+                        <input type="email" id="reg-email" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_village">Residential Area / Village</label>
+                        <input type="text" id="reg-village" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_pref_lang">Preferred Language</label>
+                        <select id="reg-language" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                            <option value="English">English</option>
+                            <option value="Amharic">አማርኛ</option>
+                            <option value="Sidaamu Afoo">Sidaamu Afoo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_ministry_pref">Preferred Ministry</label>
+                        <select id="reg-ministry" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                            <option value="Youth Ministry">Youth Ministry</option>
+                            <option value="Women's Ministry">Women's Ministry</option>
+                            <option value="Men's Ministry">Men's Ministry</option>
+                            <option value="Worship Ministry">Worship Ministry</option>
+                            <option value="Prayer Ministry">Prayer Ministry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_marital">Marital Status</label>
+                        <select id="reg-marital" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Widowed">Widowed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-gold hover:bg-gold-light text-navy-900 font-bold py-3.5 rounded-xl shadow-lg transition text-base">
+                        <span data-i18n="btn_submit_reg">Complete Membership Registration</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ADMIN LOGIN MODAL -->
+    <!-- ========================================== -->
+    <div id="admin-login-modal" class="fixed inset-0 z-50 bg-navy-900/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-gold/40 relative">
+            <button onclick="closeAdminModal()" class="absolute top-6 right-6 text-gray-400 hover:text-navy-900 text-xl"><i class="fas fa-times"></i></button>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-navy-900 text-gold rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-md">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-navy-900" data-i18n="admin_login_title">Admin Portal Login</h3>
+                <p class="text-gray-600 text-xs mt-1" data-i18n="admin_login_subtitle">Secure authentication for church administrators.</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                    <input type="email" id="admin-email" value="admin@gofeguenutchurch.org" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
+                    <input type="password" id="admin-password" value="password123" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-gold font-bold py-3.5 rounded-xl shadow-lg transition">
+                        <span>Sign In to Dashboard</span>
+                    </button>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-4">Demo Credentials pre-filled for instant testing.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECURE ADMIN DASHBOARD APP VIEW -->
+    <!-- ========================================== -->
+    <div id="admin-dashboard-view" class="hidden min-h-screen bg-gray-100 flex flex-col">
+        <!-- Dashboard Top Header -->
+        <header class="bg-navy-900 text-white h-16 px-6 flex items-center justify-between border-b border-gold/25 z-30">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-navy-900 font-bold">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h2 class="font-bold text-sm">GGEC Admin Dashboard</h2>
+                    <p class="text-[10px] text-gold">Role: <span id="current-user-role">Super Administrator</span></p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs text-gray-300 hidden sm:inline"><i class="fas fa-user-circle text-gold mr-1"></i> <span id="admin-user-email">admin@gofeguenutchurch.org</span></span>
+                <button onclick="logoutAdmin()" class="bg-red-600/20 hover:bg-red-600 text-red-200 hover:text-white px-3 py-1.5 rounded text-xs font-semibold transition border border-red-500/30">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </button>
+            </div>
+        </header>
+
+        <div class="flex-1 flex flex-col lg:flex-row">
+            <!-- Sidebar Navigation -->
+            <aside class="w-full lg:w-64 bg-navy-800 text-gray-300 p-4 space-y-1 text-sm border-r border-gold/10">
+                <button onclick="switchAdminTab('overview')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg bg-gold text-navy-900 font-bold transition flex items-center" data-tab="overview">
+                    <i class="fas fa-chart-pie w-6"></i> Dashboard Overview
+                </button>
+                <button onclick="switchAdminTab('members')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="members">
+                    <i class="fas fa-users w-6"></i> All Members
+                </button>
+                <button onclick="switchAdminTab('registration')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="registration">
+                    <i class="fas fa-user-plus w-6"></i> Register Member
+                </button>
+                <button onclick="switchAdminTab('documents')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="documents">
+                    <i class="fas fa-folder-open w-6"></i> Membership Documents
+                </button>
+                <button onclick="switchAdminTab('certificates')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="certificates">
+                    <i class="fas fa-certificate w-6"></i> Certificates
+                </button>
+                <button onclick="switchAdminTab('ministries')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="ministries">
+                    <i class="fas fa-church w-6"></i> Ministry Management
+                </button>
+                <button onclick="switchAdminTab('events')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="events">
+                    <i class="fas fa-calendar-alt w-6"></i> Event Management
+                </button>
+                <button onclick="switchAdminTab('reports')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="reports">
+                    <i class="fas fa-chart-bar w-6"></i> Reports & Analytics
+                </button>
+                <button onclick="switchAdminTab('settings')" class="admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center" data-tab="settings">
+                    <i class="fas fa-cog w-6"></i> Website Settings
+                </button>
+            </aside>
+
+            <!-- Dashboard Main Content Area -->
+            <main class="flex-1 p-6 overflow-y-auto">
+                <!-- TAB 1: OVERVIEW -->
+                <div id="tab-overview" class="admin-tab-content space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Dashboard Overview</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                            <div class="text-xs text-gray-500 font-bold uppercase mb-1">Total Registered Members</div>
+                            <div id="stat-total-members" class="text-3xl font-extrabold text-navy-900">1,245</div>
+                            <span class="text-xs text-green-600 font-semibold mt-2 inline-block"><i class="fas fa-arrow-up mr-1"></i> +18 this month</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                            <div class="text-xs text-gray-500 font-bold uppercase mb-1">Active Members</div>
+                            <div id="stat-active-members" class="text-3xl font-extrabold text-navy-900">1,190</div>
+                            <span class="text-xs text-blue-600 font-semibold mt-2 inline-block">95.5% active rate</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                            <div class="text-xs text-gray-500 font-bold uppercase mb-1">Active Ministries</div>
+                            <div class="text-3xl font-extrabold text-navy-900">8</div>
+                            <span class="text-xs text-gold font-semibold mt-2 inline-block">All operational</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                            <div class="text-xs text-gray-500 font-bold uppercase mb-1">Upcoming Events</div>
+                            <div class="text-3xl font-extrabold text-navy-900">3</div>
+                            <span class="text-xs text-purple-600 font-semibold mt-2 inline-block">Next: Revival Conf</span>
+                        </div>
+                    </div>
+
+                    <!-- Recent Members Table Preview -->
+                    <div class="bg-white rounded-2xl shadow border border-gray-200 p-6">
+                        <h4 class="font-bold text-navy-900 text-lg mb-4">Recent Member Registrations</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-gray-100 text-gray-700 text-xs uppercase">
+                                    <tr>
+                                        <th class="p-3">ID</th>
+                                        <th class="p-3">Full Name</th>
+                                        <th class="p-3">Phone</th>
+                                        <th class="p-3">Ministry</th>
+                                        <th class="p-3">Date</th>
+                                        <th class="p-3">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-members-tbody" class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="p-3 font-mono font-semibold text-navy-900">GGEC-2026-0001</td>
+                                        <td class="p-3 font-medium">Abebe Kebede</td>
+                                        <td class="p-3">+251 91 234 5678</td>
+                                        <td class="p-3">Youth Ministry</td>
+                                        <td class="p-3">2026-10-10</td>
+                                        <td class="p-3"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-bold">Active</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-mono font-semibold text-navy-900">GGEC-2026-0002</td>
+                                        <td class="p-3 font-medium">Tigist Alemu</td>
+                                        <td class="p-3">+251 92 345 6789</td>
+                                        <td class="p-3">Women's Ministry</td>
+                                        <td class="p-3">2026-10-12</td>
+                                        <td class="p-3"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-bold">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: ALL MEMBERS -->
+                <div id="tab-members" class="admin-tab-content hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <h3 class="text-2xl font-bold text-navy-900">All Registered Members</h3>
+                        <div class="flex items-center space-x-2 w-full sm:w-auto">
+                            <input type="text" id="member-search-input" onkeyup="filterMembers()" placeholder="Search name, ID, phone..." class="px-4 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-gold w-full sm:w-64">
+                            <button onclick="exportMembersCSV()" class="bg-navy-900 text-gold px-4 py-2 rounded-lg text-sm font-semibold hover:bg-navy-800 transition"><i class="fas fa-file-csv mr-1"></i> Export CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow border border-gray-200 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-gray-100 text-gray-700 text-xs uppercase">
+                                    <tr>
+                                        <th class="p-4">Membership ID</th>
+                                        <th class="p-4">Full Name</th>
+                                        <th class="p-4">Phone</th>
+                                        <th class="p-4">Village</th>
+                                        <th class="p-4">Ministry</th>
+                                        <th class="p-4">Status</th>
+                                        <th class="p-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="all-members-tbody" class="divide-y divide-gray-200">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: REGISTER MEMBER -->
+                <div id="tab-registration" class="admin-tab-content hidden space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Register New Member (Admin Mode)</h3>
+                    <div class="bg-white p-8 rounded-2xl shadow border border-gray-200 max-w-2xl">
+                        <form onsubmit="handleAdminRegisterMember(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name *</label>
+                                    <input type="text" id="adm-reg-name" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone Number *</label>
+                                    <input type="tel" id="adm-reg-phone" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Residential Area / Village</label>
+                                    <input type="text" id="adm-reg-village" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Assigned Ministry</label>
+                                    <select id="adm-reg-ministry" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                                        <option value="Youth Ministry">Youth Ministry</option>
+                                        <option value="Women's Ministry">Women's Ministry</option>
+                                        <option value="Men's Ministry">Men's Ministry</option>
+                                        <option value="Worship Ministry">Worship Ministry</option>
+                                        <option value="Prayer Ministry">Prayer Ministry</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-gold font-bold py-3.5 rounded-xl shadow transition">
+                                <i class="fas fa-user-plus mr-2"></i> Register Member & Generate ID
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- TAB 4: DOCUMENTS -->
+                <div id="tab-documents" class="admin-tab-content hidden space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-2xl font-bold text-navy-900">Membership Document Archive</h3>
+                        <button onclick="showUploadDocModal()" class="bg-gold text-navy-900 font-bold px-4 py-2 rounded-lg text-sm shadow hover:bg-gold-light transition"><i class="fas fa-upload mr-1"></i> Upload Document</button>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow border border-gray-200 p-6">
+                        <p class="text-sm text-gray-600 mb-4">Securely managed private storage documents (Baptism certificates, transfer letters, application forms).</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-gray-100 text-gray-700 text-xs uppercase">
+                                    <tr>
+                                        <th class="p-3">Member Name</th>
+                                        <th class="p-3">Membership ID</th>
+                                        <th class="p-3">Document Category</th>
+                                        <th class="p-3">Upload Date</th>
+                                        <th class="p-3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="p-3 font-medium">Abebe Kebede</td>
+                                        <td class="p-3 font-mono">GGEC-2026-0001</td>
+                                        <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-bold">Baptism Certificate</span></td>
+                                        <td class="p-3">2026-10-10</td>
+                                        <td class="p-3"><button class="text-navy-900 hover:text-gold font-bold text-xs"><i class="fas fa-download mr-1"></i> Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-medium">Tigist Alemu</td>
+                                        <td class="p-3 font-mono">GGEC-2026-0002</td>
+                                        <td class="p-3"><span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded text-xs font-bold">Membership Form</span></td>
+                                        <td class="p-3">2026-10-12</td>
+                                        <td class="p-3"><button class="text-navy-900 hover:text-gold font-bold text-xs"><i class="fas fa-download mr-1"></i> Download</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: CERTIFICATES -->
+                <div id="tab-certificates" class="admin-tab-content hidden space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Membership & Baptism Certificates</h3>
+                    <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                        <p class="text-sm text-gray-600 mb-4">Generate and print official church certificates for registered members.</p>
+                        <div class="flex space-x-4">
+                            <button onclick="alert('Certificate generated successfully!')" class="bg-navy-900 text-gold font-semibold px-4 py-2 rounded-lg text-sm"><i class="fas fa-print mr-2"></i> Print Baptism Certificate</button>
+                            <button onclick="alert('Certificate generated successfully!')" class="bg-navy-900 text-gold font-semibold px-4 py-2 rounded-lg text-sm"><i class="fas fa-print mr-2"></i> Print Membership Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: MINISTRIES -->
+                <div id="tab-ministries" class="admin-tab-content hidden space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Ministry Management</h3>
+                    <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                        <p class="text-sm text-gray-600 mb-4">Manage church ministries, leaders, and descriptions displayed on the public website.</p>
+                        <ul class="space-y-2 text-sm font-medium">
+                            <li class="p-3 bg-gray-50 rounded border flex justify-between items-center"><span>Youth Ministry</span> <button class="text-xs text-gold font-bold">Edit</button></li>
+                            <li class="p-3 bg-gray-50 rounded border flex justify-between items-center"><span>Women's Ministry</span> <button class="text-xs text-gold font-bold">Edit</button></li>
+                            <li class="p-3 bg-gray-50 rounded border flex justify-between items-center"><span>Men's Ministry</span> <button class="text-xs text-gold font-bold">Edit</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- TAB 7: EVENTS -->
+                <div id="tab-events" class="admin-tab-content hidden space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Event & Announcement Management</h3>
+                    <div class="bg-white p-6 rounded-2xl shadow border border-gray-200">
+                        <p class="text-sm text-gray-600 mb-4">Publish or remove upcoming events and announcements for the homepage.</p>
+                        <button class="bg-navy-900 text-gold font-semibold px-4 py-2 rounded-lg text-sm mb-4"><i class="fas fa-plus mr-1"></i> Add New Event</button>
+                    </div>
+                </div>
+
+                <!-- TAB 8: REPORTS -->
+                <div id="tab-reports" class="admin-tab-content hidden space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Reports and Analytics</h3>
+                    <div class="bg-white p-6 rounded-2xl shadow border border-gray-200 space-y-4">
+                        <p class="text-sm text-gray-600">Generate statistical reports on membership growth, active participation, and ministry distribution.</p>
+                        <button onclick="exportMembersCSV()" class="bg-navy-900 text-gold font-semibold px-4 py-2 rounded-lg text-sm"><i class="fas fa-download mr-2"></i> Export Authorized Member Records (CSV)</button>
+                    </div>
+                </div>
+
+                <!-- TAB 9: SETTINGS -->
+                <div id="tab-settings" class="admin-tab-content hidden space-y-6">
+                    <h3 class="text-2xl font-bold text-navy-900">Website Settings & Supabase Configuration</h3>
+                    <div class="bg-white p-6 rounded-2xl shadow border border-gray-200 space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Supabase Project URL</label>
+                            <input type="text" value="https://xyzproject.supabase.co" class="w-full px-4 py-2 rounded-lg border border-gray-300 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Supabase Anon Key</label>
+                            <input type="password" value="eyJhbGciOiJIUzI1NiIsIn..." class="w-full px-4 py-2 rounded-lg border border-gray-300 text-sm">
+                        </div>
+                        <button onclick="alert('Supabase settings saved successfully!')" class="bg-gold text-navy-900 font-bold px-6 py-2 rounded-lg text-sm shadow">Save Configuration</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT SYSTEM & TRANSLATIONS -->
+    <!-- ========================================== -->
+    <script>
+        // TRANSLATION DICTIONARIES (English, Amharic, Sidaamu Afoo)
+        // Note: Sidaamu Afoo entries marked with [Verify] for fluent speaker review as requested.
+        const translations = {
+            en: {
+                admin_portal: "Admin Portal",
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_leadership: "Leadership",
+                nav_ministries: "Ministries",
+                nav_services: "Services",
+                nav_events: "Events",
+                nav_gallery: "Gallery",
+                nav_contact: "Contact",
+                btn_register: "Register Membership",
+                hero_badge: "Welcome to Gofe Guenut Evangelical Church",
+                hero_tagline: '"Growing in Faith, United in Christ, Serving with Love."',
+                btn_join: "Join Our Church",
+                btn_explore: "Explore Our Church",
+                stat_word_title: "Biblical Teaching",
+                stat_word_desc: "Rooted firmly in the infallible Word of God, preaching Christ and Him crucified.",
+                stat_fellowship_title: "Vibrant Fellowship",
+                stat_fellowship_desc: "United in the Holy Spirit, caring for one another in genuine Christian love.",
+                stat_community_title: "Community Impact",
+                stat_community_desc: "Reaching Sidama and beyond with the transforming gospel of Jesus Christ.",
+                about_heading: "About Our Church",
+                about_subtitle: "Discover our history, divine calling, core beliefs, and values as a family of believers in Sidama, Ethiopia.",
+                history_title: "Our History",
+                history_desc: "Gofe Guenut Evangelical Church (ጐፌ ገነት ወንጌላዊ ቤተክርስትያን) was established with a powerful vision to proclaim the gospel of Jesus Christ, nurture believers in sound biblical doctrine, and serve the local community with boundless love and compassion.",
+                vision_label: "Our Vision",
+                vision_text: "To see transformed lives honoring God and impacting generations.",
+                mission_label: "Our Mission",
+                mission_text: "Making disciples through worship, fellowship, discipleship, and service.",
+                beliefs_title: "Our Beliefs",
+                beliefs_desc: "We believe in the Holy Trinity, the divine inspiration of the Holy Scriptures, salvation by grace through faith in Jesus Christ alone, and the blessed hope of His return.",
+                values_title: "Core Values",
+                values_desc: "Biblical Truth, Genuine Love, Prayerful Dependence, Servant Leadership, Integrity, and Active Community Engagement.",
+                purpose_title: "Spiritual Purpose",
+                purpose_desc: "To glorify God by equipping believers for ministry, edifying the body of Christ, and evangelizing our local community and nations.",
+                leadership_heading: "Church Leadership",
+                leadership_subtitle: "Meet our dedicated pastors, elders, and ministry leaders serving with godly devotion.",
+                role_senior_pastor: "Senior Pastor",
+                role_assoc_pastor: "Assistant Pastor",
+                role_elder: "Church Elder & Admin",
+                ministries_heading: "Church Ministries",
+                ministries_subtitle: "Get involved in our active ministries designed to serve every age group and spiritual need.",
+                min_youth: "Youth Ministry",
+                min_youth_desc: "Empowering the next generation to stand firm in faith and godly character.",
+                min_women: "Women's Ministry",
+                min_women_desc: "Sisterhood fellowship, prayer support, and compassionate community service.",
+                min_men: "Men's Ministry",
+                min_men_desc: "Building godly husbands, fathers, and leaders of integrity.",
+                min_children: "Children's Ministry",
+                min_children_desc: "Nurturing little ones in Sunday school with biblical stories and songs.",
+                min_worship: "Worship Ministry",
+                min_worship_desc: "Lifting high the name of Jesus through heartfelt choir and instrumental praise.",
+                min_prayer: "Prayer Ministry",
+                min_prayer_desc: "Interceding daily for the church, families, nation, and global missions.",
+                min_evangelism: "Evangelism & Outreach",
+                min_evangelism_desc: "Sharing the gospel message and showing Christ's love in the community.",
+                min_bible: "Bible Study",
+                min_bible_desc: "Deepening theological understanding and practical life application.",
+                services_heading: "Worship Services & Programs",
+                services_subtitle: "Join us in fellowship and worship throughout the week.",
+                srv_sunday: "Sunday Worship Service",
+                srv_wednesday: "Mid-Week Prayer Meeting",
+                srv_friday: "Youth Fellowship Program",
+                srv_saturday: "Bible Study & Choir Practice",
+                events_heading: "Events & Announcements",
+                events_subtitle: "Stay updated with upcoming church conferences, special programs, and announcements.",
+                gallery_heading: "Photo Gallery",
+                gallery_subtitle: "Glimpses of our worship services, youth gatherings, celebrations, and church life.",
+                contact_heading: "Contact Us",
+                contact_subtitle: "We would love to hear from you. Reach out for prayer requests, inquiries, or visit us.",
+                loc_title: "Church Location",
+                phone_title: "Phone Number",
+                email_title: "Email Address",
+                form_title: "Send Us a Message",
+                lbl_name: "Full Name",
+                lbl_email: "Email Address",
+                lbl_message: "Message / Prayer Request",
+                btn_send: "Send Message",
+                reg_modal_title: "Church Membership Registration",
+                reg_modal_subtitle: "Join Gofe Guenut Evangelical Church digital community.",
+                lbl_fullname: "Full Name *",
+                lbl_gender: "Gender",
+                lbl_phone: "Phone Number *",
+                lbl_email_opt: "Email Address",
+                lbl_village: "Residential Area / Village",
+                lbl_pref_lang: "Preferred Language",
+                lbl_ministry_pref: "Preferred Ministry",
+                lbl_marital: "Marital Status",
+                btn_submit_reg: "Complete Membership Registration",
+                admin_login_title: "Admin Portal Login",
+                admin_login_subtitle: "Secure authentication for church administrators.",
+                footer_tagline: "Growing in Faith, United in Christ, Serving with Love."
+            },
+            am: {
+                admin_portal: "የአስተዳዳሪ ፖርታል",
+                nav_home: "መነሻ",
+                nav_about: "ስለ እኛ",
+                nav_leadership: "አመራር",
+                nav_ministries: "አገልግሎቶች",
+                nav_services: "የአምልኮ ፕሮግራሞች",
+                nav_events: "ክስተቶች",
+                nav_gallery: "ፎቶዎች",
+                nav_contact: "ያግኙን",
+                btn_register: "አባልነት ይመዝገቡ",
+                hero_badge: "እንኳን ወደ ጐፌ ገነት ወንጌላዊ ቤተክርስትያን በደህና መጡ",
+                hero_tagline: '"በእምነት እያደግን፣ በክርስቶስ አንድ ሁነን፣ በፍቅር በማገልገል ላይ።"',
+                btn_join: "ቤተክርስቲያናችንን ይቀላቀሉ",
+                btn_explore: "ቤተክርስቲያናችንን ያስሱ",
+                stat_word_title: "የቃሉ ትምህርት",
+                stat_word_desc: "በእግዚአብሔር ቃል ላይ የጸና፣ ክርስቶስንና የተሰቀለውን የሚሰብክ።",
+                stat_fellowship_title: "ህብረት",
+                stat_fellowship_desc: "በመንፈስ ቅዱስ አንድነት የተሳሰረ፣ እርስ በርስ የሚተሳሰብ።",
+                stat_community_title: "ማህበረሰባዊ ተጽዕኖ",
+                stat_community_desc: "ሲዳማንና አካባቢውን በወንጌል ማዳረስ።",
+                about_heading: "ስለ ቤተክርስቲያናችን",
+                about_subtitle: "ታሪካችንን፣ ራዕያችንን፣ ተልዕኳችንንና እምነታችንን ይወቁ።",
+                history_title: "ታሪካችን",
+                history_desc: "ጐፌ ገነት ወንጌላዊ ቤተክርስትያን የኢየሱስ ክርስቶስን ወንጌል ለመሰብክ፣ አማኞችን በጤናማ ትምህርት ለማነጽ እና ማህበረሰቡን በፍቅር ለማገልገል የተቋቋመች ነች።",
+                vision_label: "ራዕያችን",
+                vision_text: "እግዚአብሔርን የሚያከብሩና ትውልድን የሚቀይሩ ህይወቶችን ማየት።",
+                mission_label: "ተልዕኳችን",
+                mission_text: "በአምልኮ፣ በህብረት እና በማገልገል ደቀመዛርትን ማፍራት።",
+                beliefs_title: "እምነታችን",
+                beliefs_desc: "በሦስትነት አምላክ፣ በመጽሐፍ ቅዱስ መለኮታዊ መነሳሳት እና በክርስቶስ ቤዛነት እናምናለን።",
+                values_title: "እሴቶቻችን",
+                values_desc: "መጽሐፍ ቅዱሳዊ እውነት፣ እውነተኛ ፍቅር፣ ጸሎት እና የአገልጋይነት መንፈስ።",
+                purpose_title: "መንፈሳዊ ዓላማ",
+                purpose_desc: "እግዚአብሔርን ማክበር እና አማኞችን ለአገልግሎት ማዘጋጀት።",
+                leadership_heading: "የቤተክርስቲያን አመራር",
+                leadership_subtitle: "ለእግዚአብሔር ክብር የሚተጉ አገልጋዮቻችንን ይወቁ።",
+                role_senior_pastor: "ዋና ፓስተር",
+                role_assoc_pastor: "ረዳት ፓስተር",
+                role_elder: "ሽማግሌ እና አስተዳዳሪ",
+                ministries_heading: "የቤተክርስቲያን አገልግሎቶች",
+                ministries_subtitle: "ለተለያዩ የዕድሜ ክልሎች የተዘጋጁ አገልግሎቶቻችንን ይቀላቀሉ።",
+                min_youth: "የወጣቶች አገልግሎት",
+                min_youth_desc: "ትውልዱን በእምነት እና በጽናት ማነጽ።",
+                min_women: "የሴቶች አገልግሎት",
+                min_women_desc: "በጸሎትና በህብረት መደጋገፍ።",
+                min_men: "የወንዶች አገልግሎት",
+                min_men_desc: "አርአያነት ያላቸው አባቶችን ማፍራት።",
+                min_children: "የህጻናት አገልግሎት",
+                min_children_desc: "ህጻናትን በመጽሐፍ ቅዱስ ቃል ማሳደግ።",
+                min_worship: "የዝማሬ አገልግሎት",
+                min_worship: "እግዚአብሔርን በዝማሬ ማክበር።",
+                min_prayer: "የጸሎት አገልግሎት",
+                min_prayer_desc: "ለቤተክርስቲያን እና ለሀገር መጸለይ።",
+                min_evangelism: "የወንጌል ስርጭት",
+                min_evangelism_desc: "ወንጌልን ማዳረስ።",
+                min_bible: "የመጽሐፍ ቅዱስ ጥናት",
+                min_bible_desc: "ቃሉን በጥልቀት መማር።",
+                services_heading: "የአምልኮ መርሃ ግብሮች",
+                services_subtitle: "በሳምንቱ ቀናት በሚኖሩን ፕሮግራሞች ይሳተፉ።",
+                srv_sunday: "እሁድ ዋና አምልኮ",
+                srv_wednesday: "እሮብ የጸሎት መርሃ ግብር",
+                srv_friday: "አርብ የወጣቶች መርሃ ግብር",
+                srv_saturday: "ቅዳሜ የመጽሐፍ ቅዱስ ጥናት",
+                events_heading: "ክስተቶች እና ማስታወቂያዎች",
+                events_subtitle: "መጪ ጉባኤዎችን እና ማስታወቂያዎችን ይከታተሉ።",
+                gallery_heading: "የፎቶ ማዕከለ-ስዕላት",
+                gallery_subtitle: "የአምልኮ እና የህብረት ገጽታዎች።",
+                contact_heading: "ያግኙን",
+                contact_subtitle: "ለጸሎት ጥያቄዎች እና ጥያቄዎች ያግኙን።",
+                loc_title: "አድራሻ",
+                phone_title: "ስልክ ቁጥር",
+                email_title: "ኢሜይል አድራሻ",
+                form_title: "መልእክት ይላኩ",
+                lbl_name: "ሙሉ ስም",
+                lbl_email: "ኢሜይል",
+                lbl_message: "መልእክት / የጸሎት ጥያቄ",
+                btn_send: "መልእክት ላክ",
+                reg_modal_title: "የአባልነት ምዝገባ",
+                reg_modal_subtitle: "የቤተክርስቲያናችን ዲጂታል ማህበረሰብ ይቀላቀሉ።",
+                lbl_fullname: "ሙሉ ስም *",
+                lbl_gender: "ጾታ",
+                lbl_phone: "ስልክ ቁጥር *",
+                lbl_email_opt: "ኢሜይል አድራሻ",
+                lbl_village: "መኖሪያ አካባቢ / ቀበሌ",
+                lbl_pref_lang: "የተመረጠ ቋንቋ",
+                lbl_ministry_pref: "የሚፈልጉት አገልግሎት",
+                lbl_marital: "የጋብቻ ሁኔታ",
+                btn_submit_reg: "ምዝገባውን አጠናቅ",
+                admin_login_title: "የአስተዳዳሪ መግቢያ",
+                admin_login_subtitle: "ለቤተክርስቲያን አስተዳዳሪዎች የተጠበቀ መግቢያ።",
+                footer_tagline: "በእምነት እያደግን፣ በክርስቶስ አንድ ሁነን፣ በፍቅር በማገልገል ላይ።"
+            },
+            sid: {
+                admin_portal: "Sumanqara Katiba [Verify]",
+                nav_home: "Mannu [Verify]",
+                nav_about: "Ninkunni [Verify]",
+                nav_leadership: "Gikki [Verify]",
+                nav_ministries: "Tinsahu [Verify]",
+                nav_services: "Kullshu [Verify]",
+                nav_events: "Guto [Verify]",
+                nav_gallery: "Poto [Verify]",
+                nav_contact: "Xawishshu [Verify]",
+                btn_register: "Massiote [Verify]",
+                hero_badge: "Gofe Guenut Kereisiti Batete Waro [Verify]",
+                hero_tagline: '"Ammanote leeltino, Kirisitoosi giddora mittaminohu, Angafa baxille leeltino."',
+                btn_join: "Batete Raote [Verify]",
+                btn_explore: "Xaphu Xaphire [Verify]",
+                stat_word_title: "Qullaawu Maxaafi [Verify]",
+                stat_word_desc: "Waaqayyoo qaalin tunsitu [Verify].",
+                stat_fellowship_title: "Mittummaa [Verify]",
+                stat_fellowship_desc: "Kiristoosi giddora mittamminu [Verify].",
+                stat_community_title: "Gamaasummaa [Verify]",
+                stat_community_desc: "Sidaama giddora wangeela tunsite [Verify].",
+                about_heading: "Batete Giddora [Verify]",
+                about_subtitle: "Tunsite seera xaphote [Verify].",
+                history_title: "Turi [Verify]",
+                history_desc: "Gofe Guenut Wangeelaawu Kereisiti Batete wangeela xaphote kaajjite [Verify].",
+                vision_label: "Lellishshu [Verify]",
+                vision_text: "Waaqayyoo galachite [Verify].",
+                mission_label: "Ershu [Verify]",
+                mission_text: "Dichchi assite [Verify].",
+                beliefs_title: "Ammanote [Verify]",
+                beliefs_desc: "Qullaawu Maxaafi ammanote [Verify].",
+                values_title: "Seeru [Verify]",
+                values_desc: "Qaalla baxille [Verify].",
+                purpose_title: "Kaayyo [Verify]",
+                purpose_desc: "Waaqayyoo galachite [Verify].",
+                leadership_heading: "Gikki Giddora [Verify]",
+                leadership_subtitle: "Pastori wido [Verify].",
+                role_senior_pastor: "Olqa Pastori [Verify]",
+                role_assoc_pastor: "Wido Pastori [Verify]",
+                role_elder: "Shimagile [Verify]",
+                ministries_heading: "Tinsahu Giddora [Verify]",
+                ministries_subtitle: "Tinsahu qineessa [Verify].",
+                min_youth: "Mitto Tinsahu [Verify]",
+                min_youth_desc: "Mitto ammanote [Verify].",
+                min_women: "Dubartte Tinsahu [Verify]",
+                min_women_desc: "Kullshu baxille [Verify].",
+                min_men: "Worba Tinsahu [Verify]",
+                min_men_desc: "Seeru wido [Verify].",
+                min_children: "Guduru Tinsahu [Verify]",
+                min_children_desc: "Guduru maxaafi [Verify].",
+                min_worship: "Kullshu Tinsahu [Verify]",
+                min_worship_desc: "Galate [Verify].",
+                min_prayer: "Qullaawu Tinsahu [Verify]",
+                min_prayer_desc: "Kullshu qalla [Verify].",
+                min_evangelism: "Wangeela Tinsahu [Verify]",
+                min_evangelism_desc: "Wangeela tunsite [Verify].",
+                min_bible: "Maxaafi Tinsahu [Verify]",
+                min_bible_desc: "Maxaafi xaphote [Verify].",
+                services_heading: "Kullshu Programi [Verify]",
+                services_subtitle: "Kullshu wido [Verify].",
+                srv_sunday: "Sanbati Kullshu [Verify]",
+                srv_wednesday: "Arba Qalla [Verify]",
+                srv_friday: "Arbi Mitto [Verify]",
+                srv_saturday: "Qoda Maxaafi [Verify]",
+                events_heading: "Guto Giddora [Verify]",
+                events_subtitle: "Guto xaphote [Verify].",
+                gallery_heading: "Poto Maakela [Verify]",
+                gallery_subtitle: "Poto xaphote [Verify].",
+                contact_heading: "Xawishshu [Verify]",
+                contact_subtitle: "Xawishshu wido [Verify].",
+                loc_title: "Kiro [Verify]",
+                phone_title: "Bilbili [Verify]",
+                email_title: "Imeeli [Verify]",
+                form_title: "Ershi [Verify]",
+                lbl_name: "Gita [Verify]",
+                lbl_email: "Imeeli [Verify]",
+                lbl_message: "Ershi [Verify]",
+                btn_send: "Ershi [Verify]",
+                reg_modal_title: "Massiote Giddora [Verify]",
+                reg_modal_subtitle: "Massiote kire [Verify].",
+                lbl_fullname: "Gita * [Verify]",
+                lbl_gender: "Lafa [Verify]",
+                lbl_phone: "Bilbili * [Verify]",
+                lbl_email_opt: "Imeeli [Verify]",
+                lbl_village: "Kiro / Ganda [Verify]",
+                lbl_pref_lang: "Qalla [Verify]",
+                lbl_ministry_pref: "Tinsahu [Verify]",
+                lbl_marital: "Maarati [Verify]",
+                btn_submit_reg: "Massiote Xaphu [Verify]",
+                admin_login_title: "Sumanqara [Verify]",
+                admin_login_subtitle: "Sumanqara kire [Verify].",
+                footer_tagline: "Ammanote leeltino, Kirisitoosi giddora mittaminohu, Angafa baxille leeltino."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('ggec_lang', lang);
+            
+            // Update buttons state
+            ['en', 'am', 'sid'].forEach(l => {
+                const btn = document.getElementById(`lang-btn-${l}`);
+                if (l === lang) {
+                    btn.className = "px-2 py-0.5 text-xs rounded font-medium transition bg-gold text-navy-900";
+                } else {
+                    btn.className = "px-2 py-0.5 text-xs rounded font-medium transition text-gray-300 hover:text-white";
+                }
+            });
+
+            // Translate elements
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Adjust font family for Amharic or Sidaamu Afoo
+            if (lang === 'am' || lang === 'sid') {
+                document.body.classList.add('eth-font');
+            } else {
+                document.body.classList.remove('eth-font');
+            }
+        }
+
+        // Initialize language from storage
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('ggec_lang') || 'en';
+            setLanguage(savedLang);
+            renderMembersTable();
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modals Toggle
+        function openRegisterModal() {
+            document.getElementById('register-modal').classList.remove('hidden');
+        }
+        function closeRegisterModal() {
+            document.getElementById('register-modal').classList.add('hidden');
+        }
+
+        function openAdminModal() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+        }
+        function closeAdminModal() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+        }
+
+        // Membership Registration Handler (Simulating Supabase integration)
+        function handleMembershipSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const phone = document.getElementById('reg-phone').value;
+            const village = document.getElementById('reg-village').value || 'Sidama';
+            const ministry = document.getElementById('reg-ministry').value;
+            
+            // Generate unique Membership ID
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const memberId = `GGEC-2026-${randomNum}`;
+
+            // Save to LocalStorage mock database
+            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            const newMember = {
+                id: memberId,
+                name: name,
+                phone: phone,
+                village: village,
+                ministry: ministry,
+                date: new Date().toISOString().split('T')[0],
+                status: 'Active'
+            };
+            members.unshift(newMember);
+            localStorage.setItem('ggec_members', JSON.stringify(members));
+
+            closeRegisterModal();
+            alert(`Registration successful! Your Unique Membership ID is: ${memberId}. Welcome to Gofe Guenut Evangelical Church!`);
+            document.getElementById('membership-form').reset();
+            renderMembersTable();
+        }
+
+        // Admin Login Handler
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('admin-email').value;
+            // Simulate successful authentication
+            closeAdminModal();
+            document.querySelector('header').classList.add('hidden');
+            document.querySelector('nav').classList.add('hidden');
+            document.querySelector('section').classList.add('hidden'); // Hero
+            // Hide all public sections
+            document.querySelectorAll('body > section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelector('footer').classList.add('hidden');
+            
+            // Show Admin Dashboard view
+            document.getElementById('admin-dashboard-view').classList.remove('hidden');
+            document.getElementById('admin-user-email').textContent = email;
+            renderMembersTable();
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-dashboard-view').classList.add('hidden');
+            document.querySelector('header').classList.remove('hidden');
+            document.querySelector('nav').classList.remove('hidden');
+            document.querySelectorAll('body > section').forEach(sec => sec.classList.remove('hidden'));
+            document.querySelector('footer').classList.remove('hidden');
+        }
+
+        // Admin Tabs Switching
+        function switchAdminTab(tabName) {
+            // Update sidebar buttons
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabName) {
+                    btn.className = "admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg bg-gold text-navy-900 font-bold transition flex items-center";
+                } else {
+                    btn.className = "admin-nav-btn w-full text-left px-4 py-2.5 rounded-lg hover:bg-navy-700 hover:text-white transition flex items-center";
+                }
+            });
+
+            // Update content views
+            document.querySelectorAll('.admin-tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+        }
+
+        // Render Members Table in Dashboard
+        function renderMembersTable(filter = '') {
+            const tbodyAll = document.getElementById('all-members-tbody');
+            const tbodyRecent = document.getElementById('recent-members-tbody');
+            
+            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            if (members.length === 0) {
+                members = [
+                    { id: 'GGEC-2026-0001', name: 'Abebe Kebede', phone: '+251 91 234 5678', village: 'Awassa', ministry: 'Youth Ministry', date: '2026-10-10', status: 'Active' },
+                    { id: 'GGEC-2026-0002', name: 'Tigist Alemu', phone: '+251 92 345 6789', village: 'Yirgalem', ministry: "Women's Ministry", date: '2026-10-12', status: 'Active' }
+                ];
+                localStorage.setItem('ggec_members', JSON.stringify(members));
+            }
+
+            document.getElementById('stat-total-members').textContent = members.length + 1243;
+            document.getElementById('stat-active-members').textContent = members.length + 1188;
+
+            const filtered = members.filter(m => m.name.toLowerCase().includes(filter.toLowerCase()) || m.id.toLowerCase().includes(filter.toLowerCase()) || m.phone.includes(filter));
+
+            let html = '';
+            filtered.forEach(m => {
+                html += `
+                    <tr>
+                        <td class="p-4 font-mono font-bold text-navy-900">${m.id}</td>
+                        <td class="p-4 font-medium">${m.name}</td>
+                        <td class="p-4">${m.phone}</td>
+                        <td class="p-4">${m.village || 'Sidama'}</td>
+                        <td class="p-4">${m.ministry}</td>
+                        <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-bold">${m.status}</span></td>
+                        <td class="p-4 flex space-x-2">
+                            <button onclick="alert('Viewing profile for ${m.name}')" class="text-navy-900 hover:text-gold font-bold text-xs"><i class="fas fa-eye"></i></button>
+                            <button onclick="alert('Editing profile for ${m.name}')" class="text-blue-600 hover:text-blue-800 font-bold text-xs"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+            if (tbodyAll) tbodyAll.innerHTML = html;
+        }
+
+        function filterMembers() {
+            const query = document.getElementById('member-search-input').value;
+            renderMembersTable(query);
+        }
+
+        function adminRegisterMember(event) {
+            event.preventDefault();
+            const name = document.getElementById('adm-reg-name').value;
+            const phone = document.getElementById('adm-reg-phone').value;
+            const village = document.getElementById('adm-reg-village').value || 'Sidama';
+            const ministry = document.getElementById('adm-reg-ministry').value;
+            
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const memberId = `GGEC-2026-${randomNum}`;
+
+            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            members.unshift({
+                id: memberId,
+                name: name,
+                phone: phone,
+                village: village,
+                ministry: ministry,
+                date: new Date().toISOString().split('T')[0],
+                status: 'Active'
+            });
+            localStorage.setItem('ggec_members', JSON.stringify(members));
+
+            alert(`Member registered successfully! ID: ${memberId}`);
+            renderMembersTable();
+            switchAdminTab('members');
+        }
+
+        function exportMembersCSV() {
+            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            let csv = 'Membership ID,Full Name,Phone,Village,Ministry,Date Joined,Status\n';
+            members.forEach(m => {
+                csv += `${m.id},"${m.name}",${m.phone},"${m.village}","${m.ministry}",${m.date},${m.status}\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'ggec_members_export.csv');
+            a.click();
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! Our church office will contact you shortly.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
