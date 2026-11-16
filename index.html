@@ -593,7 +593,7 @@
     <!-- PUBLIC MEMBERSHIP REGISTRATION MODAL -->
     <!-- ========================================== -->
     <div id="register-modal" class="fixed inset-0 z-50 bg-navy-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-gold/40 relative my-8">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-gold/40 relative my-8">
             <button onclick="closeRegisterModal()" class="absolute top-6 right-6 text-gray-400 hover:text-navy-900 text-xl"><i class="fas fa-times"></i></button>
             <div class="text-center mb-6">
                 <div class="w-14 h-14 bg-navy-900 text-gold rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-md">
@@ -644,6 +644,25 @@
                     </div>
                 </div>
 
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Position in Church *</label>
+                    <select id="reg-position" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                        <option value="">Select your church position</option>
+                        <option value="Church Member">Church Member</option>
+                        <option value="Senior Pastor">Senior Pastor</option>
+                        <option value="Assistant Pastor">Assistant Pastor</option>
+                        <option value="Church Elder">Church Elder</option>
+                        <option value="Deacon">Deacon</option>
+                        <option value="Choir / Worship Team Member">Choir / Worship Team Member</option>
+                        <option value="Sunday School Teacher">Sunday School Teacher</option>
+                        <option value="Youth Leader">Youth Leader</option>
+                        <option value="Women's Ministry Leader">Women's Ministry Leader</option>
+                        <option value="Men's Ministry Leader">Men's Ministry Leader</option>
+                        <option value="Usher">Usher</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_ministry_pref">Preferred Ministry</label>
@@ -665,6 +684,43 @@
                     </div>
                 </div>
 
+                <div class="border-t border-gray-200 pt-4">
+                    <h4 class="font-bold text-navy-900 mb-1">Additional Membership Details</h4>
+                    <p class="text-xs text-gray-500 mb-3">The following details are optional. Share only information you are comfortable providing.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_dob">Date of Birth (optional)</label>
+                        <input type="date" id="reg-dob" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_baptism">Baptism Status</label>
+                        <select id="reg-baptism" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                            <option value="Not specified">Prefer not to say</option>
+                            <option value="Baptized">Baptized</option>
+                            <option value="Not yet baptized">Not yet baptized</option>
+                            <option value="Preparing for baptism">Preparing for baptism</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_family">Family Information (optional)</label>
+                    <textarea id="reg-family" rows="2" placeholder="Family or household information (optional)" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold"></textarea>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_join_date">Date Joined Church (optional)</label>
+                        <input type="date" id="reg-join-date" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_emergency_name">Emergency Contact Name (optional)</label>
+                        <input type="text" id="reg-emergency-name" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="lbl_emergency_phone">Emergency Contact Phone (optional)</label>
+                    <input type="tel" id="reg-emergency-phone" placeholder="+251..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-gold">
+                </div>
                 <div class="pt-4">
                     <button type="submit" class="w-full bg-gold hover:bg-gold-light text-navy-900 font-bold py-3.5 rounded-xl shadow-lg transition text-base">
                         <span data-i18n="btn_submit_reg">Complete Membership Registration</span>
@@ -1096,6 +1152,12 @@
                 lbl_pref_lang: "Preferred Language",
                 lbl_ministry_pref: "Preferred Ministry",
                 lbl_marital: "Marital Status",
+                lbl_dob: "Date of Birth (optional)",
+                lbl_baptism: "Baptism Status",
+                lbl_family: "Family Information (optional)",
+                lbl_join_date: "Date Joined Church (optional)",
+                lbl_emergency_name: "Emergency Contact Name (optional)",
+                lbl_emergency_phone: "Emergency Contact Phone (optional)",
                 btn_submit_reg: "Complete Membership Registration",
                 admin_login_title: "Admin Portal Login",
                 admin_login_subtitle: "Secure authentication for church administrators.",
@@ -1190,6 +1252,12 @@
                 lbl_pref_lang: "የተመረጠ ቋንቋ",
                 lbl_ministry_pref: "የሚፈልጉት አገልግሎት",
                 lbl_marital: "የጋብቻ ሁኔታ",
+                lbl_dob: "የትውልድ ቀን (አማራጭ)",
+                lbl_baptism: "የጥምቀት ሁኔታ",
+                lbl_family: "የቤተሰብ መረጃ (አማራጭ)",
+                lbl_join_date: "ቤተክርስቲያንን የተቀላቀሉበት ቀን (አማራጭ)",
+                lbl_emergency_name: "በአደጋ ጊዜ የሚጠራ ሰው ስም (አማራጭ)",
+                lbl_emergency_phone: "የአደጋ ጊዜ ስልክ (አማራጭ)",
                 btn_submit_reg: "ምዝገባውን አጠናቅ",
                 admin_login_title: "የአስተዳዳሪ መግቢያ",
                 admin_login_subtitle: "ለቤተክርስቲያን አስተዳዳሪዎች የተጠበቀ መግቢያ።",
@@ -1284,6 +1352,12 @@ lbl_village: "Residential Area / Village",
 lbl_pref_lang: "Preferred Language",
 lbl_ministry_pref: "Preferred Ministry",
 lbl_marital: "Marital Status",
+lbl_dob: "Date of Birth (optional)",
+lbl_baptism: "Baptism Status",
+lbl_family: "Family Information (optional)",
+lbl_join_date: "Date Joined Church (optional)",
+lbl_emergency_name: "Emergency Contact Name (optional)",
+lbl_emergency_phone: "Emergency Contact Phone (optional)",
 btn_submit_reg: "Complete Membership Registration",
 admin_login_title: "Admin Portal Login",
 admin_login_subtitle: "Secure authentication for church administrators.",
@@ -1372,6 +1446,18 @@ footer_tagline: "Growing in Faith, United in Christ, Serving with Love."
                 phone: phone,
                 village: village,
                 ministry: ministry,
+                churchPosition: document.getElementById('reg-position').value,
+                gender: document.getElementById('reg-gender').value,
+                email: document.getElementById('reg-email').value,
+                preferredLanguage: document.getElementById('reg-language').value,
+                maritalStatus: document.getElementById('reg-marital').value,
+                dateOfBirth: document.getElementById('reg-dob').value,
+                baptismStatus: document.getElementById('reg-baptism').value,
+                familyInformation: document.getElementById('reg-family').value,
+                churchJoinDate: document.getElementById('reg-join-date').value,
+                emergencyContactName: document.getElementById('reg-emergency-name').value,
+                emergencyContactPhone: document.getElementById('reg-emergency-phone').value,
+                registrationDate: new Date().toISOString().split('T')[0],
                 date: new Date().toISOString().split('T')[0],
                 status: 'Active'
             };
