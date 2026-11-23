@@ -440,37 +440,37 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop" alt="Worship" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop" alt="Worship" loading="lazy" role="button" tabindex="0" onclick="openGalleryImage(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGalleryImage(this)}" class="cursor-zoom-in w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                         <span class="text-white font-semibold text-sm">Sunday Worship Celebration</span>
                     </div>
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
-                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600&auto=format&fit=crop" alt="Youth" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600&auto=format&fit=crop" alt="Youth" loading="lazy" role="button" tabindex="0" onclick="openGalleryImage(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGalleryImage(this)}" class="cursor-zoom-in w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                         <span class="text-white font-semibold text-sm">Youth Fellowship Gathering</span>
                     </div>
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop" alt="Choir" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop" alt="Choir" loading="lazy" role="button" tabindex="0" onclick="openGalleryImage(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGalleryImage(this)}" class="cursor-zoom-in w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                         <span class="text-white font-semibold text-sm">Worship Choir Ministry</span>
                     </div>
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
-                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600&auto=format&fit=crop" alt="Community" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600&auto=format&fit=crop" alt="Community" loading="lazy" role="button" tabindex="0" onclick="openGalleryImage(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGalleryImage(this)}" class="cursor-zoom-in w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                         <span class="text-white font-semibold text-sm">Community Outreach Program</span>
                     </div>
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
-                    <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=600&auto=format&fit=crop" alt="Building" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=600&auto=format&fit=crop" alt="Building" loading="lazy" role="button" tabindex="0" onclick="openGalleryImage(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGalleryImage(this)}" class="cursor-zoom-in w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                         <span class="text-white font-semibold text-sm">Church Sanctuary</span>
                     </div>
                 </div>
                 <div class="overflow-hidden rounded-2xl shadow-lg h-64 group relative">
-                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Prayer" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Prayer" loading="lazy" role="button" tabindex="0" onclick="openGalleryImage(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGalleryImage(this)}" class="cursor-zoom-in w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     <div class="absolute inset-0 bg-navy-900/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
                         <span class="text-white font-semibold text-sm">Prayer & Intercession Meeting</span>
                     </div>
@@ -478,6 +478,13 @@
             </div>
         </div>
     </section>
+
+    <!-- ACCESSIBLE GALLERY LIGHTBOX -->
+    <div id="gallery-lightbox" class="fixed inset-0 z-[100] hidden bg-black/90 p-4 items-center justify-center" role="dialog" aria-modal="true" aria-label="Photo viewer" onclick="if(event.target===this)closeGalleryImage()">
+        <button type="button" onclick="closeGalleryImage()" aria-label="Close photo" class="absolute top-5 right-5 text-white text-3xl px-3 py-1">&times;</button>
+        <img id="gallery-lightbox-image" src="" alt="Expanded church gallery photo" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+        <p id="gallery-lightbox-caption" class="absolute bottom-5 left-4 right-4 text-center text-white text-sm"></p>
+    </div>
 
     <!-- CONTACT SECTION -->
     <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
@@ -1037,6 +1044,38 @@
     <!-- JAVASCRIPT SYSTEM & TRANSLATIONS -->
     <!-- ========================================== -->
     <script>
+        // Safe browser storage helpers. Data remains on this device only.
+        function readLocalJSON(key, fallback = []) {
+            try {
+                const value = localStorage.getItem(key);
+                if (!value) return fallback;
+                const parsed = JSON.parse(value);
+                return Array.isArray(fallback) && !Array.isArray(parsed) ? fallback : parsed;
+            } catch (error) {
+                console.warn('Unable to read local browser storage:', key, error);
+                return fallback;
+            }
+        }
+        function writeLocalJSON(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (error) {
+                console.error('Unable to save browser data:', key, error);
+                alert('Your browser could not save this information. Check available phone storage or connect the website to a secure cloud database.');
+                return false;
+            }
+        }
+        function makeMemberId(members) {
+            const year = new Date().getFullYear();
+            let id;
+            do {
+                const randomPart = Math.floor(100000 + Math.random() * 900000);
+                id = `GGEC-${year}-${randomPart}`;
+            } while (members.some(member => member && member.id === id));
+            return id;
+        }
+
         // TRANSLATION DICTIONARIES (English, Amharic, Sidaamu Afoo)
         // Sidaamu Afoo entries use the wording supplied for this website; untranslated items fall back to English.
         const translations = {
@@ -1382,7 +1421,7 @@ footer_tagline: "Kirstoosi Ammanatenni mittimmatenni kaajjinsho, Baxillunni soqq
 
         function setLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('ggec_lang', lang);
+            try { localStorage.setItem('ggec_lang', lang); } catch (error) { console.warn('Language preference could not be saved.', error); }
             
             // Update buttons state
             ['en', 'am', 'sid'].forEach(l => {
@@ -1414,7 +1453,8 @@ footer_tagline: "Kirstoosi Ammanatenni mittimmatenni kaajjinsho, Baxillunni soqq
 
         // Initialize language from storage
         window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('ggec_lang') || 'en';
+            let savedLang = 'en';
+            try { savedLang = localStorage.getItem('ggec_lang') || 'en'; } catch (error) { console.warn('Language preference unavailable.', error); }
             setLanguage(['en','am','sid'].includes(savedLang) ? savedLang : 'en');
             renderMembersTable();
         });
@@ -1440,47 +1480,48 @@ footer_tagline: "Kirstoosi Ammanatenni mittimmatenni kaajjinsho, Baxillunni soqq
             document.getElementById('admin-login-modal').classList.add('hidden');
         }
 
-        // Membership Registration Handler (Simulating Supabase integration)
+        // Membership registration: browser-local demo storage, not a shared church database.
         function handleMembershipSubmit(event) {
             event.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const phone = document.getElementById('reg-phone').value;
-            const village = document.getElementById('reg-village').value || 'Sidama';
-            const ministry = document.getElementById('reg-ministry').value;
-            
-            // Generate unique Membership ID
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            const memberId = `GGEC-2026-${randomNum}`;
+            const form = document.getElementById('membership-form');
+            if (!form || !form.reportValidity()) return;
 
-            // Save to LocalStorage mock database
-            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            const name = document.getElementById('reg-name').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            if (!name || !phone) {
+                alert('Please enter your full name and phone number.');
+                return;
+            }
+
+            const members = readLocalJSON('ggec_members', []);
+            const memberId = makeMemberId(members);
+            const today = new Date().toISOString().slice(0, 10);
             const newMember = {
                 id: memberId,
-                name: name,
-                phone: phone,
-                village: village,
-                ministry: ministry,
+                name,
+                phone,
+                village: document.getElementById('reg-village').value.trim() || 'Sidama',
+                ministry: document.getElementById('reg-ministry').value,
                 churchPosition: document.getElementById('reg-position').value,
                 gender: document.getElementById('reg-gender').value,
-                email: document.getElementById('reg-email').value,
+                email: document.getElementById('reg-email').value.trim(),
                 preferredLanguage: document.getElementById('reg-language').value,
                 maritalStatus: document.getElementById('reg-marital').value,
                 dateOfBirth: document.getElementById('reg-dob').value,
                 baptismStatus: document.getElementById('reg-baptism').value,
-churchJoinDate: document.getElementById('reg-join-date').value,
-                emergencyContactName: document.getElementById('reg-emergency-name').value,
-                emergencyContactPhone: document.getElementById('reg-emergency-phone').value,
-                registrationDate: new Date().toISOString().split('T')[0],
-                date: new Date().toISOString().split('T')[0],
-                registrationDate: new Date().toISOString().split('T')[0],
+                churchJoinDate: document.getElementById('reg-join-date').value,
+                emergencyContactName: document.getElementById('reg-emergency-name').value.trim(),
+                emergencyContactPhone: document.getElementById('reg-emergency-phone').value.trim(),
+                registrationDate: today,
+                date: today,
                 status: 'Active'
             };
             members.unshift(newMember);
-            localStorage.setItem('ggec_members', JSON.stringify(members));
+            if (!writeLocalJSON('ggec_members', members)) return;
 
             closeRegisterModal();
-            alert(`Registration successful! Your Unique Membership ID is: ${memberId}. Welcome to Gofe Guenut Evangelical Church!`);
-            document.getElementById('membership-form').reset();
+            alert(`Registration saved on this device. Membership ID: ${memberId}. This record is not yet synced with other devices.`);
+            form.reset();
             renderMembersTable();
         }
 
@@ -1521,26 +1562,26 @@ churchJoinDate: document.getElementById('reg-join-date').value,
             const tbodyAll = document.getElementById('all-members-tbody');
             const tbodyRecent = document.getElementById('recent-members-tbody');
             
-            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            let members = readLocalJSON('ggec_members', []);
             // Show only real records saved by this browser. No invented sample members or inflated totals.
             document.getElementById('stat-total-members').textContent = members.length;
             document.getElementById('stat-active-members').textContent = members.filter(m => m.status === 'Active').length;
 
-            const filtered = members.filter(m => m.name.toLowerCase().includes(filter.toLowerCase()) || m.id.toLowerCase().includes(filter.toLowerCase()) || m.phone.includes(filter));
+            const filtered = members.filter(m => String(m.name || '').toLowerCase().includes(filter.toLowerCase()) || String(m.id || '').toLowerCase().includes(filter.toLowerCase()) || String(m.phone || '').includes(filter));
 
             let html = '';
             filtered.forEach(m => {
                 html += `
                     <tr>
-                        <td class="p-4 font-mono font-bold text-navy-900">${m.id}</td>
-                        <td class="p-4 font-medium">${m.name}</td>
-                        <td class="p-4">${m.phone}</td>
-                        <td class="p-4">${m.village || 'Sidama'}</td>
-                        <td class="p-4">${m.ministry}</td>
-                        <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-bold">${m.status}</span></td>
+                        <td class="p-4 font-mono font-bold text-navy-900">${escapeHTML(m.id || '')}</td>
+                        <td class="p-4 font-medium">${escapeHTML(m.name || '')}</td>
+                        <td class="p-4">${escapeHTML(m.phone || '')}</td>
+                        <td class="p-4">${escapeHTML(m.village || 'Sidama')}</td>
+                        <td class="p-4">${escapeHTML(m.ministry || '')}</td>
+                        <td class="p-4"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-bold">${escapeHTML(m.status || 'Pending')}</span></td>
                         <td class="p-4 flex space-x-2">
-                            <button onclick="alert('Viewing profile for ${m.name}')" class="text-navy-900 hover:text-gold font-bold text-xs"><i class="fas fa-eye"></i></button>
-                            <button onclick="alert('Editing profile for ${m.name}')" class="text-blue-600 hover:text-blue-800 font-bold text-xs"><i class="fas fa-edit"></i></button>
+                            <button type="button" data-member-action="view" data-member-id="${escapeHTML(m.id || '')}" class="text-navy-900 hover:text-gold font-bold text-xs" aria-label="View member"><i class="fas fa-eye"></i></button>
+                            <button type="button" data-member-action="edit" data-member-id="${escapeHTML(m.id || '')}" class="text-blue-600 hover:text-blue-800 font-bold text-xs" aria-label="Edit member"><i class="fas fa-edit"></i></button>
                         </td>
                     </tr>
                 `;
@@ -1560,6 +1601,15 @@ churchJoinDate: document.getElementById('reg-join-date').value,
             }
         }
 
+        document.addEventListener('click', event => {
+            const button = event.target.closest('[data-member-action]');
+            if (!button) return;
+            const action = button.getAttribute('data-member-action');
+            alert(action === 'view'
+                ? 'Member profile viewing is not yet implemented.'
+                : 'Member profile editing is not yet implemented. Connect a secure member database before enabling these actions.');
+        });
+
         function escapeHTML(value) {
             return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
         }
@@ -1576,10 +1626,8 @@ churchJoinDate: document.getElementById('reg-join-date').value,
             const village = document.getElementById('adm-reg-village').value || 'Sidama';
             const ministry = document.getElementById('adm-reg-ministry').value;
             
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            const memberId = `GGEC-2026-${randomNum}`;
-
-            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
+            let members = readLocalJSON('ggec_members', []);
+            const memberId = makeMemberId(members);
             members.unshift({
                 id: memberId,
                 name: name,
@@ -1590,7 +1638,7 @@ churchJoinDate: document.getElementById('reg-join-date').value,
                 registrationDate: new Date().toISOString().split('T')[0],
                 status: 'Active'
             });
-            localStorage.setItem('ggec_members', JSON.stringify(members));
+            if (!writeLocalJSON('ggec_members', members)) return;
 
             alert(`Member registered successfully! ID: ${memberId}`);
             renderMembersTable();
@@ -1598,19 +1646,27 @@ churchJoinDate: document.getElementById('reg-join-date').value,
         }
 
         function exportMembersCSV() {
-            let members = JSON.parse(localStorage.getItem('ggec_members') || '[]');
-            let csv = 'Membership ID,Full Name,Phone,Village,Ministry,Date Joined,Status\n';
-            members.forEach(m => {
-                csv += `${m.id},"${m.name}",${m.phone},"${m.village}","${m.ministry}",${m.date},${m.status}\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv' });
+            const members = readLocalJSON('ggec_members', []);
+            const columns = ['id','name','phone','village','ministry','date','status'];
+            const csvCell = value => {
+                let text = String(value ?? '');
+                // Prevent spreadsheet formula execution for untrusted user-entered values.
+                if (/^[=+\-@\t\r]/.test(text)) text = "'" + text;
+                return '"' + text.replace(/"/g, '""') + '"';
+            };
+            const csv = [columns.map(csvCell).join(','), ...members.map(member =>
+                columns.map(column => csvCell(member[column])).join(',')
+            )].join('\\r\\n');
+            const blob = new Blob(['\\uFEFF', csv], { type: 'text/csv;charset=utf-8;' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.setAttribute('href', url);
-            a.setAttribute('download', 'ggec_members_export.csv');
+            a.href = url;
+            a.download = 'ggec_members_export.csv';
+            document.body.appendChild(a);
             a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
         }
-
 
         // Local-only document upload helper. For shared/private church storage, connect Supabase Storage.
         function showUploadDocModal() {
@@ -1627,9 +1683,9 @@ churchJoinDate: document.getElementById('reg-join-date').value,
                 const reader = new FileReader();
                 reader.onload = () => {
                     try {
-                        const docs = JSON.parse(localStorage.getItem('ggec_documents') || '[]');
+                        const docs = readLocalJSON('ggec_documents', []);
                         docs.unshift({name:file.name,type:file.type,size:file.size,data:reader.result,date:new Date().toISOString().slice(0,10)});
-                        localStorage.setItem('ggec_documents', JSON.stringify(docs));
+                        if (!writeLocalJSON('ggec_documents', docs)) return;
                         alert('Document saved in this browser only. It is not yet shared with other administrators.');
                     } catch (err) {
                         alert('Could not save this document in browser storage. Connect private cloud storage for reliable document uploads.');
@@ -1640,9 +1696,38 @@ churchJoinDate: document.getElementById('reg-join-date').value,
             picker.click();
         }
 
+        // Gallery image viewer: tap/click a photo to enlarge it.
+        function openGalleryImage(image) {
+            if (!image) return;
+            const viewer = document.getElementById('gallery-lightbox');
+            const viewerImage = document.getElementById('gallery-lightbox-image');
+            const caption = document.getElementById('gallery-lightbox-caption');
+            if (!viewer || !viewerImage) return;
+            viewerImage.src = image.currentSrc || image.src;
+            viewerImage.alt = image.alt || 'Church gallery photo';
+            caption.textContent = image.alt || '';
+            viewer.classList.remove('hidden');
+            viewer.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryImage() {
+            const viewer = document.getElementById('gallery-lightbox');
+            const viewerImage = document.getElementById('gallery-lightbox-image');
+            if (!viewer) return;
+            viewer.classList.add('hidden');
+            viewer.classList.remove('flex');
+            if (viewerImage) viewerImage.src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeGalleryImage();
+        });
+
         function handleContactSubmit(event) {
             event.preventDefault();
-            alert('Thank you for your message! Our church office will contact you shortly.');
+            alert('Your message form is working, but it is not connected to a church email or database yet. Your message has not been sent. Please contact the church directly until an email service is configured.');
             event.target.reset();
         }
     </script>
